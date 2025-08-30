@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Services</title>
+</head>
+<body>
+    <h1>This is Services Page</h1>
+    <hr>
+
+    <!-- use fragment and replace host div -->
+    <div th:replace="~{base :: parent(~{::#main-con})}"></div>
+
+    <!-- local content -->
+    <section id="main-con">
+        This is dynamic content of Services page.
+    </section>
+</body>
+</html>

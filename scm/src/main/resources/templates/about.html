@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+</head>
+<body>
+    <h1>This is About Page</h1>
+    <hr>
+
+    <!-- call base fragment and pass local section -->
+    <div th:insert="~{base :: parent(~{::section})}"></div>
+
+    <!-- local content that will be inserted -->
+    <section>
+        This is dynamic content of About page.
+    </section>
+</body>
+</html>
