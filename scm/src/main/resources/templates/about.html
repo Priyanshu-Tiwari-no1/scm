@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
 <head>
-    <meta charset="UTF-8">
-    <title>About</title>
+     <title>About page</title>
 </head>
+
 <body>
-    <h1>This is About Page</h1>
-    <hr>
+    <div id="content">
+        <h1>Welcome to about page</h1>
+    </div>
 
-    <!-- call base fragment and pass local section -->
-    <div th:insert="~{base :: parent(~{::section})}"></div>
-
-    <!-- local content that will be inserted -->
-    <section>
-        This is dynamic content of About page.
-    </section>
+    <script>
+        console.log("about page");
+    </script>
 </body>
+
 </html>

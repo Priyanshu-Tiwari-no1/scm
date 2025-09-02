@@ -1,0 +1,66 @@
+<!-- common header -->
+<nav data-th-fragment="navbar" class="bg-gray-500 border-gray-200 dark:bg-gray-900">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+
+        <!-- brand -->
+        <a data-th-src="@{'/'}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img data-th-src="@{'/images/call.png'}" class="h-8 shadow-sm" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">SamparkPro-Smart Contact
+                Manager</span>
+        </a>
+
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <div class="flex space-x-4">
+                <a data-th-href="@{'/loginPage'}" type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
+                    LOGIN
+                </a>
+                <a data-th-href="@{'/regisPage'}" type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
+                    SIGN UP
+                </a>
+                <!-- dark light theme btn -->
+                <button id="theme-change-btn"
+                    class="px-3 py-2 rounded flex items-center gap-2 bg-gray-400 dark:bg-gray-600">
+                    <div id="theme-circle"
+                        class="w-6 h-6 rounded-full bg-gray-800 text-white flex items-center justify-center">
+                        <i class="fa-solid fa-circle-half-stroke text-sm"></i>
+                    </div>
+                    <span id="theme-label">Light</span>
+                </button>
+
+
+            </div>
+
+            <!-- icon to open menu on small screen -->
+
+        </div>
+
+        <!-- menus -->
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+            <ul
+                class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-blue-400 rounded-lg bg-blue-500 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
+                <li>
+                    <a data-th-href="@{'/home'}"
+                        class="block py-2 px-3 text-white rounded hover:bg-blue-600 md:hover:bg-transparent md:hover:underline"
+                        aria-current="page">Home</a>
+                </li>
+                <li>
+                    <a data-th-href="@{'/about'}"
+                        class="block py-2 px-3 text-white rounded hover:bg-blue-600 md:hover:bg-transparent md:hover:underline">
+                        About</a>
+                </li>
+                <li>
+                    <a data-th-href="@{'/services'}"
+                        class="block py-2 px-3 text-white rounded hover:bg-blue-600 md:hover:bg-transparent md:hover:underline">
+                        Services</a>
+                </li>
+                <li>
+                    <a data-th-href="@{'/contactPage'}"
+                        class="block py-2 px-3 text-white rounded hover:bg-blue-600 md:hover:bg-transparent md:hover:underline">
+                        Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

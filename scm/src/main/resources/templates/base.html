@@ -1,19 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- namespace of thymeleaf -->
+<html class="light" lang="en" th:fragment="parent(content,title,script)" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Base</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-replace="${title}">SCM</title>
+    <link data-th-href="@{'\css\output.css'}" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+    <!--from flow bite-->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-    <div class="parent-fragment" th:fragment="parent(con)">
-        <h1>This is parent fragment</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Itaque adipisci libero assumenda totam aut est veniam nulla?
-        </p>
 
-        <!-- Placeholder where child page content will be injected -->
-        <div th:insert="${con}"></div>
+<body>
+    <!-- common header -->
+    <div data-th-replace="navbar :: navbar"></div>
+    <!-- main content -->
+    <div class="p-4">
+        <section data-th-replace="${content}"></section>
     </div>
+    <!-- footer -->
+    <footer class="p-4">
+        Footer : Learning Agent
+    </footer>
+    <!--flow bite content-->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script data-th-src="@{'/js/script.js'}">
+
+    </script>
+    <th:block data-th-replace="${script}"></th:block>
 </body>
+
 </html>

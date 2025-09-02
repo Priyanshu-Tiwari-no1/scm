@@ -1,7 +1,9 @@
 package com.scm.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 @Controller
@@ -26,6 +28,22 @@ public String aboutPage(){
 public String servicesPage(){
     System.out.println("services html");
     return "services";
+}
+
+//contact page
+@GetMapping("/contactPage")
+public String contact(){
+    return new String ("contactPage");
+}
+
+@GetMapping("/loginPage")
+public String login(){
+    return new String ("loginPage");
+}
+
+@GetMapping("/regisPage")
+public String register(){
+    return new String ("regisPage");
 }
 
 }

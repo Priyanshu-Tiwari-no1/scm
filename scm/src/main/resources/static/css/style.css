@@ -1,0 +1,10 @@
+
+html.light {
+  background: white;
+  color: black;
+}
+
+html.dark {
+  background: black;
+  color: white;
+}
