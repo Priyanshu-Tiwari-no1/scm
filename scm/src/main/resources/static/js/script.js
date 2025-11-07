@@ -1,33 +1,50 @@
-const themeBtn = document.getElementById("theme-change-btn");
-const themeLabel = document.getElementById("theme-label");
+console.log("script loaded");
+
 let currentTheme = getTheme();
+applyTheme(currentTheme);
 
-changeTheme(currentTheme);
+function applyTheme(theme) {
+  const html = document.querySelector("html");
 
-themeBtn.addEventListener("click", () => {
-  currentTheme = currentTheme === "light" ? "dark" : "light";
-  setTheme(currentTheme);
-  changeTheme(currentTheme);
-});
+  // Remove both themes just to ensure clean state
+  html.classList.remove("light", "dark");
+  html.classList.add(theme);
 
-function changeTheme(theme) {
-  document.documentElement.classList.remove("light", "dark");
-  document.documentElement.classList.add(theme);
+  // Save theme to localStorage
+  setTheme(theme);
 
-  if (theme === "dark") {
-    themeLabel.textContent = "Dark";
-    themeLabel.style.color = "black"; // Dark text black
-  } else {
-    themeLabel.textContent = "Light";
-    themeLabel.style.color = "black"; // Light text white
-  }
+  // Update button label
+  const label = document.querySelector("#theme_change_btn span");
+  if (label) label.textContent = theme === "light" ? "Dark" : "Light";
 }
 
+function changeTheme() {
+  const changeThemeButton = document.querySelector("#theme_change_btn");
+
+  if (!changeThemeButton) {
+    console.error("Theme change button not found!");
+    return;
+  }
+
+  changeThemeButton.addEventListener("click", () => {
+    console.log("Theme change button clicked");
+
+    // Toggle theme
+    currentTheme = currentTheme === "dark" ? "light" : "dark";
+
+    // Apply the new theme
+    applyTheme(currentTheme);
+  });
+}
+
+changeTheme();
+
+// LocalStorage helpers
 function setTheme(theme) {
   localStorage.setItem("theme", theme);
 }
 
 function getTheme() {
-  let theme = localStorage.getItem("theme");
+  const theme = localStorage.getItem("theme");
   return theme ? theme : "light";
 }

@@ -1,49 +1,60 @@
 package com.scm.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import com.scm.forms.UserForm;
+
 import org.springframework.ui.Model;
 
 @Controller
 public class PageController {
+
     @RequestMapping("/home")
     public String home(Model model) {
-        System.err.println("home page handler");
-        // sending data to view
+        System.out.println("Home page handler");
         model.addAttribute("name", "Anshikalla");
         model.addAttribute("youtubeChannel", "Learn code with durgesh");
         model.addAttribute("githubrepo", "https://github.com/Priyanshu-Tiwari-no1");
         return "home";
     }
 
-//for  route
-@RequestMapping("/about")
-public String aboutPage(){
-    System.out.println("about html");
-    return "about";
-}
-@RequestMapping("/services")
-public String servicesPage(){
-    System.out.println("services html");
-    return "services";
-}
+    @RequestMapping("/about")
+    public String aboutPage() {
+        System.out.println("About page handler");
+        return "about";
+    }
 
-//contact page
-@GetMapping("/contactPage")
-public String contact(){
-    return new String ("contactPage");
-}
+    @RequestMapping("/services")
+    public String servicesPage() {
+        System.out.println("Services page handler");
+        return "services";
+    }
 
-@GetMapping("/loginPage")
-public String login(){
-    return new String ("loginPage");
-}
+    @GetMapping("/contactPage")
+    public String contact() {
+        return "contactPage";
+    }
 
-@GetMapping("/regisPage")
-public String register(){
-    return new String ("regisPage");
-}
+    @GetMapping("/loginPage")
+    public String login() {
+        return "loginPage";
+    }
 
+    @GetMapping("/regisPage")
+    public String register(Model model) {
+
+        UserForm userform=new UserForm();
+        //default data bhi dal sakte h
+        model.addAttribute("user",userform);
+
+        return "regisPage";
+    }
+
+    @PostMapping("/do-register")
+    public String processRegister() {
+        System.out.println("Processing registration");
+        // TODO: fetch form data, validate, save to DB
+        return "redirect:/regisPage"; // redirect after successful registration
+    }
 }
