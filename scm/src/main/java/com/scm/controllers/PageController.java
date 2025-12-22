@@ -1,14 +1,30 @@
 package com.scm.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.scm.Entities.User;
 import com.scm.forms.UserForm;
+import com.scm.helper.Message;
+import com.scm.helper.MessageType;
+import com.scm.services.UserService;
 
-import org.springframework.ui.Model;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 public class PageController {
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/")
+    public String index(){
+        return "redirect:/home";
+    }
 
     @RequestMapping("/home")
     public String home(Model model) {
@@ -33,28 +49,62 @@ public class PageController {
 
     @GetMapping("/contactPage")
     public String contact() {
+        System.out.println("Contact page handler");
         return "contactPage";
     }
 
-    @GetMapping("/loginPage")
+    @GetMapping("/login")
     public String login() {
-        return "loginPage";
+        System.out.println("Login page handler");
+        return "login";
     }
 
     @GetMapping("/regisPage")
     public String register(Model model) {
-
-        UserForm userform=new UserForm();
-        //default data bhi dal sakte h
-        model.addAttribute("user",userform);
-
+        System.out.println("Register page handler");
+        UserForm userform = new UserForm();
+        // userform.setName("Priyanshu");
+        // userform.setAbout("This is about : Write some thing about yourself.");
+        // You can pre-fill default data if needed
+        model.addAttribute("user", userform);
         return "regisPage";
     }
 
-    @PostMapping("/do-register")
-    public String processRegister() {
-        System.out.println("Processing registration");
-        // TODO: fetch form data, validate, save to DB
-        return "redirect:/regisPage"; // redirect after successful registration
+    @RequestMapping(value = "/do-register", method = RequestMethod.POST)
+public String processRegister(
+        @Valid @ModelAttribute("user") UserForm userForm,
+        BindingResult bindingResult,
+        HttpSession session,
+        Model model) {
+
+    System.out.println("Processing registration for: " + userForm);
+
+    //  Validation check
+    if (bindingResult.hasErrors()) {
+        // show validation messages back on form
+        model.addAttribute("user", userForm);
+        return "regisPage";
     }
+
+    //  Map UserForm -> User entity
+    User user = new User();
+    user.setName(userForm.getName());
+    user.setEmail(userForm.getEmail());
+    user.setPassword(userForm.getPassword());
+    user.setAbout(userForm.getAbout());
+    user.setPhoneNumber(userForm.getPhoneNumber());
+    user.setProfilePic("pic.jpeg");
+
+    userService.saveUser(user);
+    System.out.println("User Saved Successfully!");
+
+    Message message = Message.builder()
+            .content("Registration Successful")
+            .type(MessageType.green)
+            .build();
+    session.setAttribute("message", message);
+
+    // Redirect to clear POST data
+    return "redirect:/regisPage";
+}
 }

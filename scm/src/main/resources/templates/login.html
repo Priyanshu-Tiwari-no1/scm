@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+    <title>Login Page</title>
+</head>
+
+<body id="content" th:fragment="content" class="relative flex-col items-center ">
+
+
+    <!-- CENTER WRAPPER -->
+    <div class="w-full max-w-md mx-auto pt-33 flex flex-col items-center">
+
+        <!-- Brand Title -->
+        <div class="flex items-center justify-center gap-3 mb-6">
+             <img th:src="@{/images/welcome.jpeg}" class="h-20 w-20 rounded-full shadow-md" alt="Logo" />
+              <!-- Brand Text -->
+            <div class="text-left leading-tight">
+                <p class="text-orange-400 text-lg"
+                   style="font-family: cursive ">
+                    Welcome to
+                </p>
+
+                <h1 class="text-3xl font-bold">
+                    <span class="text-blue-600 pr-0">Sampark</span>
+                    <span class="text-gray-700 pl-0">Pro</span>
+                </h1>
+
+                <!-- <p class="text-gray-200 text-sm tracking-wide">
+                    CONNECT • COLLABORATE • GROW
+                </p> -->
+            </div>
+            <!-- <span class="text-4xl">🙏</span>
+
+            <h1 class="text-4xl font-bold tracking-wide">
+                <span class="text-blue-600">Sampark</span>
+                <span class="text-gray-700">Pro</span>
+            </h1> -->
+
+
+        </div>
+        <!-- Outer Blue Card -->
+        <div class="w-full bg-blue-500 rounded-lg shadow-md">
+
+            <!-- Logo -->
+            <div class="flex justify-center mt-4">
+                <img th:src="@{/images/pic.png}" class="h-20 w-20 rounded-full shadow-md" alt="Logo" />
+            </div>
+
+            <!-- Inner White Card -->
+            <div class="p-8 bg-white text-gray-900 rounded-t-2xl rounded-b-2xl shadow-inner 
+                        dark:bg-gray-800 dark:text-gray-100 dark:shadow-gray-700 mt-4">
+
+                <!-- Message Fragment -->
+                <div data-th-replace="message::messagebox"></div>
+
+                <!-- <h5 class="mt-20 text-3xl font-bold text-center">
+                    Login
+                </h5> -->
+                <div class="text-red-600" th:if="${param.error}">Invalid username and password.</div>
+                <div class="text-green-600" th:if="${param.logout}"> You have been logged out.</div>
+                <!-- LOGIN FORM -->
+                <form th:action="@{/authenticate}" method="post" class="px-5">
+
+                    <!-- Username (Email)-->
+                    <div class="mb-3">
+                    <label for="email" class="block nb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input type="text" name="username" class="w-full p-2 border rounded-md" id="email"
+                            placeholder="Enter your email" required />
+                    </div>
+
+
+                    <!-- Password-->
+                    <div class="mb-3">
+                          <label for="password" class="block nb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                          <input type="password" name="password" id="password" class="w-full p-2 border rounded-md"
+                            placeholder="Enter password" required />
+                    </div> 
+
+                    <!-- Buttons -->
+                    <div class="flex justify-center gap-4 mt-6">
+                        <button type="submit" class="px-4 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-800">
+                            Login
+                        </button>
+                        <button type="reset" class="px-4 py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600">
+                            Reset
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        console.log("premium login page loaded");
+    </script>
+
+</body>
+
+</html>
