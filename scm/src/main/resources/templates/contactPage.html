@@ -1,21 +1,146 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content},~{::title},~{})}">
 
 <head>
-     <title>Contact page</title>
+    <title>Contact Us | SamparkPro</title>
 </head>
-
 <body>
-    <div id="content">
-        <h1>Welcome to home page</h1>
-     <p>Lorem ipsum dolor, sit amet consectetur
-     adipisicing elit. Maiores rem tempore aspernatur repudiandae labore 
-     dicta quaerat nemo quae facere nesciunt eius, in velit necessitatibus dolorum qui distinctio
-      error maxime. Corporis?</p>
-      </div>
-    <script>
-        console.log("contact page");
-    </script>
-</body>
 
+<section id="content" class=" dark:bg-slate-950 py-20">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- 🔥 HEADER -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl font-bold text-gray-800 dark:text-white">
+                Contact Us
+            </h1>
+            <p class="text-gray-500 mt-3 text-lg">
+                We'd love to hear from you. Get in touch 🚀
+            </p>
+        </div>
+
+        <!-- 🔥 MAIN GRID -->
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+           <img th:src="@{/images/us.png}"
+     class="w-full h-[250px] object-cover rounded-2xl shadow-xl">
+            <!-- RIGHT FORM (FIXED) -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+
+                <form class="space-y-5">
+
+                    <!-- NAME -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                            Full Name
+                        </label>
+                        <input type="text"
+                               placeholder="Enter your name"
+                               class="w-full p-3 rounded-lg border border-gray-300 dark:border-slate-700 
+                                      dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+
+                    <!-- EMAIL -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                            Email
+                        </label>
+                        <input type="email"
+                               placeholder="Enter your email"
+                               class="w-full p-3 rounded-lg border border-gray-300 dark:border-slate-700 
+                                      dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+
+                    <!-- MESSAGE -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                            Message
+                        </label>
+                        <textarea rows="4"
+                                  placeholder="Write your message..."
+                                  class="w-full p-3 rounded-lg border border-gray-300 dark:border-slate-700 
+                                         dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <button type="submit"
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition">
+                        Send Message
+                    </button>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- 🔥 CONTACT INFO -->
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-10 mt-20">
+
+            <!-- EMAIL -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-md p-6 
+                        hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center">
+
+                <img th:src="@{/images/mail.png}"
+                     class="w-16 h-16 mx-auto object-contain mb-4">
+
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
+                    Email Support
+                </h3>
+
+                <p class="text-gray-500 text-sm mt-2">
+                    Reach out to us anytime for support or queries.
+                </p>
+
+                <p class="text-blue-600 font-medium mt-3">
+                    support@samparkpro.com
+                </p>
+            </div>
+
+            <!-- PHONE -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-md p-6 
+                        hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center">
+
+                <img th:src="@{/images/phone.png}"
+                     class="w-16 h-16 mx-auto object-contain mb-4">
+
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
+                    Call Us
+                </h3>
+
+                <p class="text-gray-500 text-sm mt-2">
+                    Talk directly with our support team anytime.
+                </p>
+
+                <p class="text-green-600 font-medium mt-3">
+                    +91 98765 43210
+                </p>
+            </div>
+
+            <!-- LOCATION -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-md p-6 
+                        hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center">
+
+                <img th:src="@{/images/location.png}"
+                     class="w-16 h-16 mx-auto object-contain mb-4">
+
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
+                    Our Location
+                </h3>
+
+                <p class="text-gray-500 text-sm mt-2">
+                    Serving users across India with reliable services.
+                </p>
+
+                <p class="text-red-500 font-medium mt-3">
+                    India
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+</body>
 </html>

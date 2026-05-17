@@ -1,40 +1,54 @@
 <!DOCTYPE html>
-<!-- namespace of thymeleaf -->
-<html class="light" lang="en" th:fragment="parent(content,title,script)" xmlns:th="http://www.thymeleaf.org">
+<html class="light" lang="en" 
+      th:fragment="parent(content,title,script)" 
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-th-replace="${title}">SCM</title>
-    <link data-th-href="@{'\css\output.css'}" rel="stylesheet" />
-     <!--from flow bite-->
+
+    <!-- FIXED CSS -->
+    <link data-th-href="@{'/css/output.css'}" rel="stylesheet" />
+
+    <!-- Flowbite -->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
-   
-    <link rel="stylesheet" href="css/style.css">
-    <!-- font awesome cdn -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
 </head>
 
 <body>
-    <!-- common header -->
-    <div data-th-replace="navbar :: navbar"></div>
-    <!-- main content -->
-    <div class="p-4">
-        <section data-th-replace="${content}"></section>
-        
-    </div>
-    <!-- footer -->
-    <footer class="p-4">
-       
-    </footer>
-    <!--flow bite content-->
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-    <script data-th-src="@{'/js/script.js'}">
 
-    </script>
-    <th:block data-th-replace="${script}"></th:block>
+<!-- Logged-in Navbar -->
+<div th:if="${loggedInUser}">
+    <div data-th-replace="~{user/user_navbar::user-navbar}"></div>
+</div>
+
+<!-- Guest Navbar -->
+<div th:unless="${loggedInUser}">
+    <div data-th-replace="~{navbar :: navbar}"></div>
+</div>
+
+<!-- Main Content -->
+<div class="p-4">
+    <section data-th-replace="${content}"></section>
+</div>
+
+<!-- Footer -->
+<footer class="p-4"></footer>
+
+<!-- Flowbite JS -->
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+<!-- ✅ FINAL FIX: defer added -->
+<script data-th-src="@{'/js/script.js'}" defer></script>
+
+<th:block data-th-replace="${script}"></th:block>
+
 </body>
-
 </html>

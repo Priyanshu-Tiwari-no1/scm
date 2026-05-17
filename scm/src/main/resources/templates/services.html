@@ -1,16 +1,189 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{})}">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content},~{::title},~{})}">
 
 <head>
-    <title>Services page</title>
+    <title>Services | SamparkPro</title>
+
+    <!--  Font Awesome CDN -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-    <section id="content"> 
-        <h1>Welcome to services page</h1>
-     <h2>all about services page</h2>
-     </section>
-     
-</body>
 
+<section id="content" class="bg-slate-100 dark:bg-slate-900 py-12">
+
+    <div class="max-w-6xl mx-auto px-6">
+
+        <!-- HEADER -->
+        <div class="text-center mb-10">
+            <h1 class="text-2xl font-bold text-slate-800 dark:text-white">
+                Our Services
+            </h1>
+            <p class="text-slate-500 text-sm mt-2">
+                Powerful features to manage your contacts smarter
+            </p>
+        </div>
+
+        <!-- GRID -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <!-- CARD 1 -->
+            <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm 
+                        hover:shadow-xl hover:-translate-y-1 
+                        transition duration-300 overflow-hidden flex flex-col">
+
+                <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284"
+                     class="w-full h-32 object-cover">
+
+                <div class="p-4 text-center flex flex-col flex-grow">
+
+                    <div class="w-9 h-9 mx-auto flex items-center justify-center 
+                                rounded-full bg-blue-100 mb-2">
+                        <i class="fa-solid fa-address-book text-blue-600 text-lg"></i>
+                    </div>
+
+                    <h2 class="text-sm font-semibold text-slate-800 dark:text-white">
+                        Contact Management
+                    </h2>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        Easily store and organize contacts.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm 
+                        hover:shadow-xl hover:-translate-y-1 
+                        transition duration-300 overflow-hidden flex flex-col">
+
+                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb"
+                     class="w-full h-32 object-cover">
+
+                <div class="p-4 text-center flex flex-col flex-grow">
+
+                    <div class="w-9 h-9 mx-auto flex items-center justify-center 
+                                rounded-full bg-green-100 mb-2">
+                        <i class="fa-solid fa-shield-halved text-green-600 text-lg"></i>
+                    </div>
+
+                    <h2 class="text-sm font-semibold text-slate-800 dark:text-white">
+                        Secure System
+                    </h2>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        Strong authentication & encryption.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm 
+                        hover:shadow-xl hover:-translate-y-1 
+                        transition duration-300 overflow-hidden flex flex-col">
+
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"
+                     class="w-full h-32 object-cover">
+
+                <div class="p-4 text-center flex flex-col flex-grow">
+
+                    <div class="w-9 h-9 mx-auto flex items-center justify-center 
+                                rounded-full bg-yellow-100 mb-2">
+                        <i class="fa-solid fa-magnifying-glass text-yellow-500 text-lg"></i>
+                    </div>
+
+                    <h2 class="text-sm font-semibold text-slate-800 dark:text-white">
+                        Fast Search
+                    </h2>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        Quickly find contacts instantly.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm 
+                        hover:shadow-xl hover:-translate-y-1 
+                        transition duration-300 overflow-hidden flex flex-col">
+
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+                     class="w-full h-32 object-cover">
+
+                <div class="p-4 text-center flex flex-col flex-grow">
+
+                    <div class="w-9 h-9 mx-auto flex items-center justify-center 
+                                rounded-full bg-indigo-100 mb-2">
+                        <i class="fa-solid fa-cloud text-indigo-600 text-lg"></i>
+                    </div>
+
+                    <h2 class="text-sm font-semibold text-slate-800 dark:text-white">
+                        Cloud Storage
+                    </h2>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        Store images securely in cloud.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CARD 5 -->
+            <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm 
+                        hover:shadow-xl hover:-translate-y-1 
+                        transition duration-300 overflow-hidden flex flex-col">
+
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+                     class="w-full h-32 object-cover">
+
+                <div class="p-4 text-center flex flex-col flex-grow">
+
+                    <div class="w-9 h-9 mx-auto flex items-center justify-center 
+                                rounded-full bg-purple-100 mb-2">
+                        <i class="fa-solid fa-chart-line text-purple-600 text-lg"></i>
+                    </div>
+
+                    <h2 class="text-sm font-semibold text-slate-800 dark:text-white">
+                        Analytics
+                    </h2>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        Track insights easily.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CARD 6 -->
+            <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm 
+                        hover:shadow-xl hover:-translate-y-1 
+                        transition duration-300 overflow-hidden flex flex-col">
+
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+                     class="w-full h-32 object-cover">
+
+                <div class="p-4 text-center flex flex-col flex-grow">
+
+                    <div class="w-9 h-9 mx-auto flex items-center justify-center 
+                                rounded-full bg-pink-100 mb-2">
+                        <i class="fa-solid fa-mobile-screen text-pink-600 text-lg"></i>
+                    </div>
+
+                    <h2 class="text-sm font-semibold text-slate-800 dark:text-white">
+                        Responsive Design
+                    </h2>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        Works on all devices smoothly.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+</body>
 </html>

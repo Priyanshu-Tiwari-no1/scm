@@ -53,12 +53,14 @@ public class PageController {
         return "contactPage";
     }
 
+// login page
     @GetMapping("/login")
     public String login() {
         System.out.println("Login page handler");
         return "login";
     }
 
+    //registration page
     @GetMapping("/regisPage")
     public String register(Model model) {
         System.out.println("Register page handler");
@@ -70,6 +72,7 @@ public class PageController {
         return "regisPage";
     }
 
+    //registration process ke liye
     @RequestMapping(value = "/do-register", method = RequestMethod.POST)
 public String processRegister(
         @Valid @ModelAttribute("user") UserForm userForm,

@@ -1,21 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
 
 <head>
-     <title>Home page</title>
+    <title>Smart Contact Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
-<body>
-    <div id="content">
-        <h1>Welcome to home page</h1>
-     <p>Lorem ipsum dolor, sit amet consectetur
-     adipisicing elit. Maiores rem tempore aspernatur repudiandae labore 
-     dicta quaerat nemo quae facere nesciunt eius, in velit necessitatibus dolorum qui distinctio
-      error maxime. Corporis?</p>
-      </div>
-    <script>
-        console.log("home page");
-    </script>
-</body>
+<body class="m-0 p-0 overflow-x-hidden bg-gray-900">
 
+<div id="content" class="min-h-screen relative">
+
+    <!-- FIXED BACKGROUND IMAGE -->
+    <div class="fixed inset-0 -z-10">
+        <img th:src="@{/images/home.png}"
+             src="/images/home.png"
+             onerror="this.src='/images/home.png'"
+             alt="Smart Contact Manager Background"
+             class="w-full h-screen object-cover absolute inset-0">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/80"></div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="h-screen flex items-center justify-center px-4 relative z-10">
+        <div class="mt-10 flex justify-center gap-4">
+
+    <!-- Register Button -->
+    <a th:href="@{/regisPage}"
+       class="px-8 py-3
+              bg-blue-600
+              text-white
+              text-sm font-medium
+              rounded-md
+              hover:bg-blue-700
+              transition">
+        Register
+    </a>
+
+    <!-- Login Button -->
+    <a th:href="@{/login}"
+       class="px-8 py-3
+              bg-gray-700
+              text-white
+              text-sm font-medium
+              rounded-md
+              hover:bg-gray-800
+              transition">
+        Login
+    </a>
+
+</div>
+
+    </section>
+
+</div>
+
+<div th:fragment="script"></div>
+
+</body>
 </html>

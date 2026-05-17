@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content},~{::title},~{})}">
+
+<head>
+    <title>Contact Us | SamparkPro</title>
+</head>
+
+<body>
+
+<section id="content" class="dark:bg-slate-950 py-20">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- 🔥 HEADER -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl font-bold text-slate-800 ">
+                Contact Us
+            </h1>
+            <p class="text-slate-500 mt-3 text-lg">
+                We'd love to hear from you. Get in touch 🚀
+            </p>
+        </div>
+
+        <!-- 🔥 MAIN GRID -->
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+            <!-- LEFT IMAGE -->
+            <div class="hidden lg:block">
+                <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216"
+                     class="rounded-2xl shadow-xl w-full h-[450px] object-cover">
+            </div>
+
+            <!-- RIGHT FORM -->
+            <div class=" dark:bg-slate-800 rounded-2xl shadow-lg p-8">
+
+                <form>
+
+                    <!-- NAME -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-medium mb-2 text-slate-700">
+                            Full Name
+                        </label>
+                        <input type="text"
+                               placeholder="Enter your name"
+                               class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+
+                    <!-- EMAIL -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-medium mb-2 text-slate-700">
+                            Email
+                        </label>
+                        <input type="email"
+                               placeholder="Enter your email"
+                               class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+
+                    <!-- MESSAGE -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-medium mb-2 text-slate-700 ">
+                            Message
+                        </label>
+                        <textarea rows="4"
+                                  placeholder="Write your message..."
+                                  class="w-full p-3 rounded-lg border dark:border-slate-700 dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <button type="submit"
+                            class="w-full bg-blue-600 hover:bg-blue-700  py-3 rounded-lg font-semibold transition">
+                        Send Message
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+
+        <!-- 🔥 CONTACT INFO -->
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mt-16">
+
+            <!-- EMAIL -->
+            <div class=" dark:bg-slate-800 p-6 rounded-xl shadow text-center">
+                <div class="text-3xl mb-3">📧</div>
+                <h3 class="font-semibold text-lg text-slate-800 dark:text-white">Email</h3>
+                <p class="text-slate-500 text-sm mt-2">support@samparkpro.com</p>
+            </div>
+
+            <!-- PHONE -->
+            <div class=" dark:bg-slate-800 p-6 rounded-xl shadow text-center">
+                <div class="text-3xl mb-3">📞</div>
+                <h3 class="font-semibold text-lg text-slate-800 ">Phone</h3>
+                <p class="text-slate-500 text-sm mt-2">+91 98765 43210</p>
+            </div>
+
+            <!-- LOCATION -->
+            <div class=" dark:bg-slate-800 p-6 rounded-xl shadow text-center">
+                <div class="text-3xl mb-3">📍</div>
+                <h3 class="font-semibold text-lg text-slate-800">Location</h3>
+                <p class="text-slate-500 text-sm mt-2">India</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

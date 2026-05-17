@@ -33,12 +33,11 @@ public class UserServiceImpl implements UserService {
         String userId = UUID.randomUUID().toString();
         user.setUserId(userId);
         // password encode
-        //user.setPassword(userId);
+        // user.setPassword(userId);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-
-        //set the user role
-user.setRoleList(List.of(AppConstants.ROLE_USER));
+        // set the user role
+        user.setRoleList(List.of(AppConstants.ROLE_USER));
 
         logger.info(user.getProvider().toString());
 
@@ -50,29 +49,34 @@ user.setRoleList(List.of(AppConstants.ROLE_USER));
 
         return userRepo.findById(id);
     }
+    
 
-    @Override
-    public Optional<User> updateUser(User user) {
-        User user2 = userRepo.findById(user.getUserId())
-                .orElseThrow(() -> new ResourcesNotFoundException("User not found..."));
-        // update karenge user2 from user
-        user2.setName(user.getName());
-        user2.setEmail(user.getEmail());
-        user2.setPassword(user.getPassword());
-        user2.setAbout(user.getAbout());
-        user2.setPhoneNumber(user.getPhoneNumber());
-        user2.setProfilePic(user.getProfilePic());
-        user2.setEnabled(user.isEnabled());
-        user2.setEmailVarified(user.isEmailVarified());
-        user2.setPhoneVarified(user.isPhoneVarified());
-        user2.setProvider(user.getProvider());
-        user2.setProviderUserId(user.getProviderUserId());
+@Override
+public Optional<User> updateUser(User user) {
 
-        // save the user in database
-        User save = userRepo.save(user2);
-        return Optional.ofNullable(save);
+    User user2 = userRepo.findById(user.getUserId())
+            .orElseThrow(() -> new ResourcesNotFoundException("User not found..."));
 
+    user2.setName(user.getName());
+    user2.setEmail(user.getEmail());
+
+    // safe password update
+    if (user.getPassword() != null && !user.getPassword().isBlank()) {
+        user2.setPassword(passwordEncoder.encode(user.getPassword()));
     }
+
+    user2.setAbout(user.getAbout());
+    user2.setPhoneNumber(user.getPhoneNumber());
+    user2.setProfilePic(user.getProfilePic());
+
+    user2.setEnabled(user.isEnabled());
+    user2.setEmailVarified(user.isEmailVarified());
+    user2.setPhoneVarified(user.isPhoneVarified());
+    user2.setProvider(user.getProvider());
+    user2.setProviderUserId(user.getProviderUserId());
+
+    return Optional.of(userRepo.save(user2));
+}
 
     @Override
     public void deleteUser(String id) {
@@ -95,8 +99,15 @@ user.setRoleList(List.of(AppConstants.ROLE_USER));
 
     @Override
     public List<User> getAllUsers() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllUsers'");
+       return userRepo.findAll();
     }
+
+ 
+@Override
+public User getUserByEmail(String email) {
+    return userRepo.findByEmail(email)
+            .orElse(null);
+}
+
 
 }

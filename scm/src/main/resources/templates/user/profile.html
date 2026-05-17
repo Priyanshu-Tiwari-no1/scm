@@ -1,11 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title th:text="${loggedInUser != null ? loggedInUser.name + ' | SamparkPro' : 'Profile'}"></title>
 </head>
+
+
 <body>
-    <h1>THIS IS PROFILE PAGE</h1>
+<div id="content">
+
+    <!-- Sidebar -->
+    <div th:if="${loggedInUser != null}">
+       <div th:replace="~{user/sidebar :: sidebar}"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="pt-20 sm:ml-64 px-6">
+
+        <!-- Profile Card -->
+        <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
+
+            <!-- Header -->
+            <div class="flex items-center space-x-6">
+
+                <!-- Profile Image -->
+                <img th:src="${loggedInUser != null && loggedInUser.profilePic != null ? loggedInUser.profilePic : '/images/profile_img.jpg'}" alt="Profile"
+                     class="w-24 h-24 rounded-full border-4 border-blue-500 object-cover">
+
+                <!-- User Info -->
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white"
+                       th:text="${loggedInUser != null ? loggedInUser.name : 'No Name'}">
+                        User Name
+                    </h2>
+
+                    <p class="text-gray-600 dark:text-gray-300"
+                       th:text="${loggedInUser.email}">
+                        user@email.com
+                    </p>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="my-6 border-gray-300 dark:border-gray-600">
+
+            <!-- Details -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                <div>
+                    <p class="text-gray-500">User ID</p>
+                    <p class="font-medium text-gray-800 dark:text-white"
+                       th:text="${loggedInUser.userId}">
+                        123
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-gray-500">Phone</p>
+                    <p class="font-medium text-gray-800 dark:text-white"
+                       th:text="${loggedInUser.phoneNumber}">
+                        9876543210
+                    </p>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <p class="text-gray-500">About</p>
+                    <p class="font-medium text-gray-800 dark:text-white"
+                       th:text="${loggedInUser.about}">
+                        About user...
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Buttons -->
+            <div class="mt-6 flex gap-4">
+
+                <a href="/user/edit-profile"
+                   class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    Edit Profile
+                </a>
+
+                <a href="/do-logout"
+                   class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    console.log("Profile page loaded");
+</script>
+
 </body>
 </html>

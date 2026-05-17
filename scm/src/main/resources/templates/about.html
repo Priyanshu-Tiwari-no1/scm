@@ -1,18 +1,108 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
 
 <head>
-     <title>About page</title>
+    <title>About | SamparkPro</title>
 </head>
 
 <body>
-    <div id="content">
-        <h1>Welcome to about page</h1>
+
+<div id="content" class="min-h-screen bg-[#0B2A55]">
+
+    <!-- MAIN SECTION -->
+    <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- LEFT SIDE -->
+        <div>
+
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                About SamparkPro
+            </h1>
+
+            <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                SamparkPro is a modern and secure contact management web application designed 
+                to help users efficiently manage their personal and professional contacts 
+                in one place.
+            </p>
+
+            <p class="text-gray-800 mb-6 leading-relaxed">
+                Built using Spring Boot and Thymeleaf, SamparkPro ensures high performance, 
+                strong security, and a seamless user experience across devices.
+            </p>
+
+            <!-- FEATURES -->
+            <div class="space-y-3 mb-8">
+
+                <p>✔ Secure login with Spring Security</p>
+                <p>✔ Add, update and delete contacts easily</p>
+                <p>✔ Cloud-based image storage</p>
+                <p>✔ Fast and responsive UI</p>
+                <p>✔ User-friendly dashboard</p>
+
+            </div>
+
+            <!-- BUTTON -->
+            <a th:href="@{/user/regisPage}"
+               class="inline-block bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg font-semibold">
+                Go to signup →
+            </a>
+
+        </div>
+
+        <!-- RIGHT SIDE IMAGE -->
+        <div class="flex justify-center relative">
+
+            <img th:src="@{/images/about.png}"
+                 alt="about"
+                 class="rounded-xl shadow-lg w-full max-w-md">
+
+            <!-- DECORATION -->
+            <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-red-500 rounded-full"></div>
+
+        </div>
+
     </div>
 
-    <script>
-        console.log("about page");
-    </script>
-</body>
+    <!-- EXTRA SECTION (CARDS LIKE SCREENSHOT) -->
+    <div class="bg-gray-100 text-gray-800 py-16">
 
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+
+            <!-- CARD 1 -->
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h3 class="font-semibold text-lg mb-2">Secure Platform</h3>
+                <p class="text-sm text-gray-600">
+                    Your data is protected with strong encryption and authentication.
+                </p>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h3 class="font-semibold text-lg mb-2">Easy Management</h3>
+                <p class="text-sm text-gray-600">
+                    Organize, search and manage contacts with ease.
+                </p>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h3 class="font-semibold text-lg mb-2">Business Ready</h3>
+                <p class="text-sm text-gray-600">
+                    Perfect for professionals and businesses to manage networks.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+console.log("SamparkPro About Page Loaded");
+</script>
+
+</body>
 </html>

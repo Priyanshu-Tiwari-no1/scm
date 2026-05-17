@@ -56,8 +56,12 @@ public class User implements UserDetails {
     private List<Contact> contacts = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roleList = new ArrayList<>();
+@Builder.Default
+private List<String> roleList = new ArrayList<>();
 
+public void setRoleList(List<String> roleList) {
+    this.roleList = new ArrayList<>(roleList);
+}
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 

@@ -11,17 +11,19 @@ import com.scm.repositories.UserRepo;
 
 @Service
 public class SecurityCustomUserDetailService implements UserDetailsService {
-    @Autowired
-    private UserRepo userRepo;
+        @Autowired
+        private UserRepo userRepo;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // apne user ko load karana h
-   // Load user by email (because in your entity, username = email)
-        User user = userRepo.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + username));
+        @Override
+        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                // apne user ko load karana h
+                // Load user by email (because in your entity, username = email)
+                User user = userRepo.findByEmail(username)// database se user nikala
+                                .orElseThrow(() -> new UsernameNotFoundException(
+                                                "User not found with email: " + username));
 
-        // Return user directly because your User class already implements UserDetails
-        return user;  }
+                // Return user directly because your User class already implements UserDetails
+                return user;
+        }
 
-} 
+}

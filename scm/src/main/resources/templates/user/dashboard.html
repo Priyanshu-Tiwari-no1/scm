@@ -1,12 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title th:text="${loggedInUser != null ? loggedInUser.name + ' | Dashboard' : 'Dashboard'}"></title>
 </head>
+
 <body>
-    <h1> This is User dashboard</h1>
-    <a data-th-href="@{/do-logout}">Logout</a>
+    <div id="content" > <!-- Sidebar -->
+      <div th:if="${loggedInUser != null}">
+    <div th:replace="~{user/sidebar :: sidebar}"></div>
+</div>
+        <div class="sm:ml-64 mt-16 p-6 bg-gray-100 rounded-xl  dark:bg-gray-900 min-h-screen"> <!-- 🔹 Welcome -->
+            <div class="mb-6">
+                <h1 class="text-3xl font-bold text-gray-800 dark:text-white"> Welcome, 
+                    <!-- <span th:text="${loggedInUser.name}"></span> -->
+                <span th:text="${loggedInUser?.name}"></span>
+             </h1>
+                <p class="text-gray-500 dark:text-gray-400"> Here's what's happening with your contacts </p>
+            </div>
+            <!-- 🔹 Stats Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6"> <!-- Total Contacts -->
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow">
+                    <p class="text-gray-500">Total Contacts</p>
+                    <h2 class="text-2xl font-bold text-blue-600" th:text="${contacts != null ? contacts.size() : 0}">0
+                    </h2>
+                </div> <!-- Favorites -->
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow">
+                    <p class="text-gray-500">Favorites</p>
+                    <h2 class="text-2xl font-bold text-green-600" th:text="${favoriteCount}">0</h2>
+                </div> <!-- Recent -->
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow">
+                    <p class="text-gray-500">Recently Added</p>
+                    <h2 class="text-2xl font-bold text-purple-600" th:text="${recentCount}">0</h2>
+                </div>
+            </div>
+            <!-- 🔹 Quick Actions -->
+            <div class="flex flex-wrap gap-3 mb-6"> <a th:href="@{'/user/contacts/addcontact'}"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"> ➕ Add Contact </a> <a
+                    th:href="@{'/user/contacts'}"
+                    class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"> 📇 View Contacts </a>
+                <a th:href="@{/user/edit-profile}"
+                    class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600">
+                    👤 Edit Profile
+                </a>
+            </div> <!-- 🔹 Recent Contacts (ONLY USER CONTACTS) -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-4">
+                <h2 class="text-lg font-semibold mb-4 text-gray-800 dark:text-white"> Recent Contacts </h2>
+                <div th:if="${contacts != null and !contacts.isEmpty()}">
+                    <div th:each="c : ${contacts}"
+                        class="flex items-center justify-between p-3 border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg">
+                        <!-- Left -->
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-full">
+                                <span th:text="${c.name.substring(0,1)}">A</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800 dark:text-white" th:text="${c.name}">Name</p>
+                                <p class="text-sm text-gray-500" th:text="${c.email}">email</p>
+                            </div>
+                        </div> <!-- Right --> <a th:href="@{'/user/contacts/view/' + ${c.id}}"
+                            class="text-blue-500 hover:underline"> View </a>
+                    </div>
+                </div> <!-- Empty -->
+                <div th:if="${contacts == null or contacts.isEmpty()}" class="text-gray-500 text-center py-4"> No
+                    contacts found </div>
+            </div>
+        </div>
+    </div>
+    <script> console.log("Dashboard loaded"); </script>
 </body>
+
 </html>

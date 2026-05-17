@@ -1,50 +1,50 @@
 console.log("script loaded");
 
+// Get theme from localStorage
 let currentTheme = getTheme();
+
+// Apply theme on page load
 applyTheme(currentTheme);
 
+// Wait for DOM
+document.addEventListener("DOMContentLoaded", function () {
+  changeTheme();
+});
+
+// Apply theme
 function applyTheme(theme) {
   const html = document.querySelector("html");
 
-  // Remove both themes just to ensure clean state
   html.classList.remove("light", "dark");
   html.classList.add(theme);
 
-  // Save theme to localStorage
   setTheme(theme);
 
-  // Update button label
-  const label = document.querySelector("#theme_change_btn span");
-  if (label) label.textContent = theme === "light" ? "Dark" : "Light";
-}
-
-function changeTheme() {
-  const changeThemeButton = document.querySelector("#theme_change_btn");
-
-  if (!changeThemeButton) {
-    console.error("Theme change button not found!");
-    return;
-  }
-
-  changeThemeButton.addEventListener("click", () => {
-    console.log("Theme change button clicked");
-
-    // Toggle theme
-    currentTheme = currentTheme === "dark" ? "light" : "dark";
-
-    // Apply the new theme
-    applyTheme(currentTheme);
+  // Update all labels
+  const labels = document.querySelectorAll(".theme-label");
+  labels.forEach(label => {
+    label.textContent = theme === "light" ? "Dark" : "Light";
   });
 }
 
-changeTheme();
+// Button click
+function changeTheme() {
+  const buttons = document.querySelectorAll(".theme_change_btn");
 
-// LocalStorage helpers
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      currentTheme = currentTheme === "dark" ? "light" : "dark";
+      applyTheme(currentTheme);
+    });
+  });
+}
+
+// Save theme
 function setTheme(theme) {
   localStorage.setItem("theme", theme);
 }
 
+// Get theme
 function getTheme() {
-  const theme = localStorage.getItem("theme");
-  return theme ? theme : "light";
+  return localStorage.getItem("theme") || "light";
 }

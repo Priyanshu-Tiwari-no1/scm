@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Edit Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="card p-4 shadow">
+
+        <h3>Edit Profile</h3>
+
+        <form th:action="@{/user/update-profile}" method="post" th:object="${user}">
+
+            <!-- Name -->
+            <input type="text" th:field="*{name}" class="form-control mb-3" placeholder="Name">
+
+            <!-- Email -->
+            <input type="email" th:field="*{email}" class="form-control mb-3" readonly>
+
+            <!-- Phone -->
+            <input type="text" th:field="*{phoneNumber}" class="form-control mb-3" placeholder="Phone">
+
+            <!-- About -->
+            <textarea th:field="*{about}" class="form-control mb-3"></textarea>
+
+            <button class="btn btn-success">Update</button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
